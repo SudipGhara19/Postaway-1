@@ -1,6 +1,7 @@
 
 import UserModel from "./user.model.js";
 import jwt from 'jsonwebtoken';
+import HandleError from "../error-handler/handleError.js";
 
 
 export default class UserController{
@@ -17,7 +18,7 @@ export default class UserController{
         const user = UserModel.signIn(email, password);
 
         if(!user){
-            return res.status(400).send("Invalid user credentials.")
+            throw new HandleError(400, "Invalid user credentials.");
         }else{
             // creating JWT token while signIn
             const token = jwt.sign(

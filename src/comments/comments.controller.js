@@ -15,4 +15,16 @@ export default class CommentController{
             res.status(200).send(postComments);
         }
     }
+
+    // add Comment
+    addComment(req, res){
+        // body -> raw -> JSON -> "content": "anything" ::::::::::: in postman
+        const content = req.body.content;
+        const userId = req.userId;
+        const postId = req.params.id;
+        
+
+        const newComment = CommentModel.add(postId, userId, content);
+        res.status(200).send(newComment);
+    }
 }

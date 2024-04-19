@@ -20,7 +20,7 @@ server.use('/api', userRouter);
 //for post related APIs redirected to posts.routes.js
 server.use('/api/posts', jwtAuth, postsRouter);
 //for Comment APIs
-server.use('/api/comments', commentsRouter);
+server.use('/api/comments', jwtAuth, commentsRouter);
 
 
 // Handle errors of Application level and User level

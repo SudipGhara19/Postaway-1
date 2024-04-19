@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import userRouter from './src/users/user.routes.js';
 import HandleError from './src/error-handler/handleError.js';
+import postsRouter from './src/posts/posts.routes.js';
 
 
 const server = express();
@@ -10,8 +11,10 @@ const port = 5800;
 // to post data in {JSON}
 server.use(bodyParser.json());
 
-// for Register & SignIn 
+// for Register & SignIn redirected to user.routes.js
 server.use('/api/users', userRouter);
+//for post related APIs redirected to posts.routes.js
+server.use('/api/posts', postsRouter);
 
 
 // Handle errors of Application level and User level

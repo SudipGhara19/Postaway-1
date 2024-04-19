@@ -1,8 +1,7 @@
 
-import UserModel from "./user.model.js";
+import UserModel from './user.model.js';
 import jwt from 'jsonwebtoken';
-import HandleError from "../error-handler/handleError.js";
-
+import HandleError from '../../error-handler/handleError.js';
 
 export default class UserController{
 

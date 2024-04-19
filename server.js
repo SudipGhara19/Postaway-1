@@ -1,12 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-
-import userRouter from './src/users/user.routes.js';
+import userRouter from './src/features/users/user.routes.js';
 import HandleError from './src/error-handler/handleError.js';
-import postsRouter from './src/posts/posts.routes.js';
+import postsRouter from './src/features/posts/posts.routes.js';
 import jwtAuth from './src/middlewares/jwt.middlleware.js';
-import commentsRouter from './src/comments/comments.routes.js';
+import commentsRouter from './src/features/comments/comments.routes.js';
+import likesRouter from './src/features/likes/likes.routes.js';
 
 
 const server = express();
@@ -21,6 +21,8 @@ server.use('/api', userRouter);
 server.use('/api/posts', jwtAuth, postsRouter);
 //for Comment APIs
 server.use('/api/comments', jwtAuth, commentsRouter);
+//for Likes APIs
+server.use('/api/likes', jwtAuth, likesRouter);
 
 
 // Handle errors of Application level and User level

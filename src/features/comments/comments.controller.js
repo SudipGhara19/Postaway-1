@@ -1,4 +1,4 @@
-import HandleError from "../error-handler/handleError.js";
+import HandleError from "../../error-handler/handleError.js";
 import CommentModel from "./comments.model.js";
 
 

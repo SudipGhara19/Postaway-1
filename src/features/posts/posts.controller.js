@@ -1,6 +1,6 @@
 
 import PostModel from "./posts.model.js";
-import HandleError from "../error-handler/handleError.js";
+import HandleError from "../../error-handler/handleError.js";
 
 export default class PostController{
 

@@ -18,6 +18,12 @@ export default class PostModel{
         return post;
     }
 
+    // retrive posts based on userId/user credentials
+    static getByUserCredentials(userId){
+        const postsByUser = posts.filter((i) => i.userId == userId);
+        return postsByUser;
+    }
+
     // Add post method
     static add(userId, caption, imageUrl){
         const newPost = new PostModel(userId, caption, imageUrl);

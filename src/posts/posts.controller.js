@@ -18,4 +18,13 @@ export default class PostController{
             res.status(200).send(post);
         }
     }
+
+    addPost(req, res){
+        const userId = req.userId;
+        const caption = req.body;
+        const imageUrl = req.file.filename;
+
+        const post = PostModel.add(userId, caption, imageUrl);
+        res.status(200).send(post);
+    }
 }

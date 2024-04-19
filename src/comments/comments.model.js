@@ -39,6 +39,17 @@ export default class CommentModel{
 
         return newComment;
     }
+
+    //delete method
+    static delete(id, userId){
+        //checking comment id and userId
+        const commentToDelete = comments.findIndex((i) => i.id == id && i.userId == userId);
+        if(commentToDelete == -1){
+            throw new HandleError(404, "Comment not found.")
+        }else{
+            comments.splice(commentToDelete, 1);
+        }
+    }
 }
 
 let comments = [
@@ -54,4 +65,11 @@ let comments = [
         1,
         'incredible picture',
         2),
+
+    new CommentModel(
+        1,
+        1,
+        'Wow!',
+        3
+    ),
 ]

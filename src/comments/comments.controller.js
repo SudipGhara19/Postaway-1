@@ -27,4 +27,12 @@ export default class CommentController{
         const newComment = CommentModel.add(postId, userId, content);
         res.status(200).send(newComment);
     }
+
+    deleteComment(req, res){
+        const userId = req.userId;
+        const commentId = req.params.id;
+
+        CommentModel.delete(commentId, userId);
+        res.status(200).send("Comment deleted.")
+    }
 }

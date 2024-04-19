@@ -32,6 +32,19 @@ export default class PostModel{
 
         return newPost;
     }
+
+    // delete a post by :id
+    static deletePost(postId, userId){
+        //checking the post is posted by the loggedin user or not
+        const postToDelete = posts.findIndex((i) => i.id == postId && i.userId == userId);
+        
+        if(postToDelete !== -1){
+        const deletedPost = posts.splice(postToDelete, 1);
+        return deletedPost;
+        }
+
+        
+    }
 };
 
 let posts = [

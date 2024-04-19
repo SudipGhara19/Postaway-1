@@ -42,4 +42,19 @@ export default class PostController{
         const post = PostModel.add(userId, caption, imageUrl);
         res.status(200).send(post);
     }
+
+    // delete post by :id
+    deletePost(req, res){
+        const userId = req.userId;
+        const postId = req.params.id;
+
+        const dltPost = PostModel.deletePost(postId, userId);
+        
+        //check the post is posted by the loggedin user or not // or post not found to specific postId
+        if(!dltPost){
+            throw new HandleError(404, "Post not found.")
+        }else{
+            res.status(200).send("Post deleted.")
+        }
+    }
 }

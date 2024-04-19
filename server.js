@@ -1,8 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+
+
 import userRouter from './src/users/user.routes.js';
 import HandleError from './src/error-handler/handleError.js';
 import postsRouter from './src/posts/posts.routes.js';
+import jwtAuth from './src/middlewares/jwt.middlleware.js';
 
 
 const server = express();
@@ -14,7 +17,7 @@ server.use(bodyParser.json());
 // for Register & SignIn redirected to user.routes.js
 server.use('/api/users', userRouter);
 //for post related APIs redirected to posts.routes.js
-server.use('/api/posts', postsRouter);
+server.use('/api/posts', jwtAuth, postsRouter);
 
 
 // Handle errors of Application level and User level

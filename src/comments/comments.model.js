@@ -15,7 +15,7 @@ export default class CommentModel{
         const posts = PostModel.getAll();
         const post = posts.find((i) => i.id == postId);
         if(!post){
-            throw new HandleError(404, "Post not found.")
+            throw new HandleError(400, "Post not found.")
         }
         // retrive comments on specific postId
         const postComments = comments.filter((i) => i.postId == postId);
@@ -29,7 +29,7 @@ export default class CommentModel{
         const posts = PostModel.getAll();
         const post = posts.find((i) => i.id == postId);
         if(!post){
-            throw new HandleError(404, "Post not found.")
+            throw new HandleError(400, "Post not found.")
         }
         // creating new comment and push it to the comments array
         const newComment = new CommentModel(userId, postId, content);
@@ -45,10 +45,20 @@ export default class CommentModel{
         //checking comment id and userId
         const commentToDelete = comments.findIndex((i) => i.id == id && i.userId == userId);
         if(commentToDelete == -1){
-            throw new HandleError(404, "Comment not found.")
+            throw new HandleError(400, "Comment not found.")
         }else{
             comments.splice(commentToDelete, 1);
         }
+    }
+
+    // update method
+    static update(id, userId, content){
+        const commentToUpdate = comments.findIndex((i) => i.id == id && i.userId == userId);
+        if(commentToUpdate == -1){
+            throw new HandleError(400, "Invalid.");
+        }
+        comments[commentToUpdate].content = content;
+        return comments[commentToUpdate];
     }
 }
 

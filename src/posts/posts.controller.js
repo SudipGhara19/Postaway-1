@@ -15,7 +15,7 @@ export default class PostController{
         const id = req.params.id;
         const post = PostModel.getById(id);
         if(!post){
-            throw new HandleError(404, "Post not found.");
+            throw new HandleError(400, "Post not found.");
         }else{
             res.status(200).send(post);
         }
@@ -27,7 +27,7 @@ export default class PostController{
         const posts = PostModel.getByUserCredentials(userId);
 
         if(!posts){
-            throw new HandleError(404, "User has no posts.\n POST YOUR THOUGHTS NOW!!!!");
+            throw new HandleError(400, "User has no posts.\n POST YOUR THOUGHTS NOW!!!!");
         }else{
             res.status(200).send(posts);
         }
@@ -52,7 +52,7 @@ export default class PostController{
         
         //check the post is posted by the loggedin user or not // or post not found to specific postId
         if(!dltPost){
-            throw new HandleError(404, "Post not found.")
+            throw new HandleError(400, "Post not found.")
         }else{
             res.status(200).send("Post deleted.")
         }
@@ -69,7 +69,7 @@ export default class PostController{
         const updatedPost = PostModel.updatePost(postId, userId, caption, imageUrl);
 
         if(!updatedPost){
-            throw new HandleError(404, "Post not found.");
+            throw new HandleError(400, "Post not found.");
            
         }else{
             res.status(200).send("Post updated successfully");

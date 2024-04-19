@@ -28,11 +28,23 @@ export default class CommentController{
         res.status(200).send(newComment);
     }
 
+    //deleting comment
     deleteComment(req, res){
         const userId = req.userId;
         const commentId = req.params.id;
 
         CommentModel.delete(commentId, userId);
         res.status(200).send("Comment deleted.")
+    }
+
+    //Updating Comment
+    updateComment(req, res){
+        const userId = req.userId;
+        const id = req.params.id;
+        // body -> raw -> JSON -> "content": "anything" ::::::::::: in postman
+        const content = req.body.content;
+
+        const updatedComment = CommentModel.update(id, userId, content);
+        res.status(200).send(updatedComment);
     }
 }

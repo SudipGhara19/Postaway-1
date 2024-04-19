@@ -57,4 +57,22 @@ export default class PostController{
             res.status(200).send("Post deleted.")
         }
     }
+
+
+    //update post by :id
+    updatePost(req, res){
+        const postId = req.params.id;
+        const userId = req.userId;
+        const caption = req.body;
+        const imageUrl = req.file.filename;
+
+        const updatedPost = PostModel.updatePost(postId, userId, caption, imageUrl);
+
+        if(!updatedPost){
+            throw new HandleError(404, "Post not found.");
+           
+        }else{
+            res.status(200).send("Post updated successfully");
+        }
+    }
 }

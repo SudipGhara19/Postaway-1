@@ -42,10 +42,25 @@ export default class PostModel{
         const deletedPost = posts.splice(postToDelete, 1);
         return deletedPost;
         }
+    }
 
-        
+    
+    // Update a specific post by :id
+    static updatePost(postId, userId, caption, imageUrl){
+        const postToUpdate = posts.findIndex((i) => i.id == postId && i.userId == userId);
+        if(postToUpdate !== -1){
+            posts[postToUpdate] = {
+                userId: userId,
+                caption: caption,
+                imageUrl: imageUrl,
+                id: postId
+            };
+            return posts[postToUpdate];
+        }
     }
 };
+
+
 
 let posts = [
     new PostModel(1,"I am thor", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv_J5jZSQmomL5ABLMdLQtNwaUb9rWvxzLWQ&s", 1),

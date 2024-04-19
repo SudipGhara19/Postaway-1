@@ -10,5 +10,6 @@ postsRouter.get('/all', postController.getAllPosts);
 postsRouter.get('/:id', postController.getById);
 postsRouter.post('/', upload.single('imageUrl'), postController.addPost);
 postsRouter.delete('/:id', postController.deletePost);
+postsRouter.put('/:id',upload.single('imageUrl'), postController.updatePost);
 
 export default postsRouter;

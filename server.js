@@ -6,6 +6,7 @@ import userRouter from './src/users/user.routes.js';
 import HandleError from './src/error-handler/handleError.js';
 import postsRouter from './src/posts/posts.routes.js';
 import jwtAuth from './src/middlewares/jwt.middlleware.js';
+import commentsRouter from './src/comments/comments.routes.js';
 
 
 const server = express();
@@ -15,9 +16,11 @@ const port = 5800;
 server.use(bodyParser.json());
 
 // for Register & SignIn redirected to user.routes.js
-server.use('/api/users', userRouter);
+server.use('/api', userRouter);
 //for post related APIs redirected to posts.routes.js
 server.use('/api/posts', jwtAuth, postsRouter);
+//for Comment APIs
+server.use('/api/comments', commentsRouter);
 
 
 // Handle errors of Application level and User level

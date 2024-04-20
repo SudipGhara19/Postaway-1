@@ -24,6 +24,31 @@ export default class LikesModel{
         }
     }
 
+
+    // toggle like method
+    static toggle(postId, userId){
+        // Validating post is availabe or not
+        const posts = PostModel.getAll();
+        const post = posts.find((i) => i.id == postId);
+        if(!post){
+            throw new HandleError(400, "Post not found.")
+        }else{
+
+            const existingLikeIndex = likes.findIndex((i) => i.postId == postId && i.userId == userId);
+
+            if(existingLikeIndex !== -1){
+                // if user already liked thepost, remove the like
+                likes.splice(existingLikeIndex, 1);
+                return "Like removed from post.";
+            }else{
+                // add a new like
+                likes.push(new LikesModel(postId, userId, likes.length + 1));
+                return "Liked the post.";
+            }
+        }
+    }
+
+
     
 }
 
